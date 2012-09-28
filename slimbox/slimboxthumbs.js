@@ -9,6 +9,8 @@ function makeSlimboxThumbs( $, pathRegexp, wgFullScriptPath ) {
 	var canview = /\.(jpe?g|jpe|gif|png)$/i;
 	var m;
 	var names = [];
+	// When fitted into the viewport, thumbnail widths are quantized to multiples of this number
+	var quant = 80;
 	$( 'img' ).each( function( i, e ) {
 		if ( e.parentNode.nodeName == 'A' && ( m = re.exec( e.parentNode.href ) ) ) {
 			var n = decodeURIComponent( m[1] );
@@ -32,8 +34,8 @@ function makeSlimboxThumbs( $, pathRegexp, wgFullScriptPath ) {
 					var h = r[n][2];
 					can = canview.exec( n );
 					if ( !can || r[n][0] > ww || r[n][1] > wh ) {
-						var sc = ww;
-						var sh = Math.round( r[n][0] * wh / r[n][1] );
+						var sc = Math.floor( ww / quant ) * quant;
+						var sh = Math.floor( r[n][0] * wh / r[n][1] / quant ) * quant;
 						if ( sh < sc ) {
 							sc = sh;
 						}
