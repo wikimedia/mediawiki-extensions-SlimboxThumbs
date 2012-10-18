@@ -73,12 +73,12 @@ function efSBTAddScripts( $out ) {
 	$eDir = ( $useExtensionPath ? $wgExtensionAssetsPath : $wgScriptPath . '/extensions' );
 	$eDir .= '/SlimboxThumbs/slimbox';
 
-	if ( $mw16 && substr( $wgVersion, 0, 4 ) != '1.16' ) {
+	if ( $mw16 ) {
 		$out->includeJQuery();
 	} else {
 		$out->addScript(
 			'<script type="text/javascript"'.
-			' src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>' . "\n"
+			' src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>' . "\n"
 		);
 	}
 

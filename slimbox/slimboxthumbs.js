@@ -18,13 +18,11 @@ function makeSlimboxThumbs( $, pathRegexp, wgFullScriptPath ) {
 		}
 	} );
 	if ( names.length ) {
-		sajax_request_type = 'POST';
-		sajax_do_call( 'efSBTGetImageSizes', [ names.join( ':' ) ], function( r ) {
+		var cb = function( r ) {
 			var nodes = [];
 			var can;
 			var ww = $( window ).width();
 			var wh = $( window ).height() * 0.9;
-			r = $.parseJSON( r.responseText );
 			$( 'img' ).each( function( i, e ) {
 				if ( e.parentNode.nodeName == 'A' && ( m = re.exec( e.parentNode.href ) ) ) {
 					var n = decodeURIComponent( m[1] );
@@ -53,6 +51,16 @@ function makeSlimboxThumbs( $, pathRegexp, wgFullScriptPath ) {
 			$( nodes ).slimbox({ captionAnimationDuration: 0 }, function( e, i ) {
 				return e._lightbox;
 			}, function() { return true; });
-		} );
+		};
+		$.ajax({
+			url: wgFullScriptPath+'/index.php?action=ajax',
+			type: 'POST',
+			dataType: 'json',
+			data: {
+				rs: 'efSBTGetImageSizes',
+				'rsargs[]': [ names.join( ':' ) ]
+			},
+			success: cb
+		});
 	}
 }
