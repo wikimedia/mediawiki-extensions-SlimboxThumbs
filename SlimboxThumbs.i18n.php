@@ -241,4 +241,3 @@ $messages['tl'] = array(
 $messages['uk'] = array(
 	'slimboxthumbs-desc' => 'Показує повний розмір зображення з [http://www.digitalia.be/software/slimbox2 Slimbox 2] при натисканні на мініатюру',
 );
-
