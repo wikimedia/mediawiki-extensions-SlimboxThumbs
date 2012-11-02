@@ -241,3 +241,10 @@ $messages['tl'] = array(
 $messages['uk'] = array(
 	'slimboxthumbs-desc' => 'Показує повний розмір зображення з [http://www.digitalia.be/software/slimbox2 Slimbox 2] при натисканні на мініатюру',
 );
+
+/** Simplified Chinese (中文（简体）‎)
+ * @author Yfdyh000
+ */
+$messages['zh-hans'] = array(
+	'slimboxthumbs-desc' => '点击缩略图时使用[http://www.digitalia.be/software/slimbox2 Slimbox 2]显示完整尺寸的图像',
+);
