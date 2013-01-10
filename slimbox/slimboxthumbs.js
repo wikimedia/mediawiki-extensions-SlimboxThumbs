@@ -29,15 +29,19 @@ function makeSlimboxThumbs( $, pathRegexp, wgFullScriptPath ) {
 					if ( !r[n] ) {
 						return;
 					}
-					var h = r[n][2];
+					var h = r[n].url;
 					can = canview.exec( n );
-					if ( !can || r[n][0] > ww || r[n][1] > wh ) {
+					if ( !can || r[n].width > ww || r[n].height > wh ) {
 						var sc = Math.floor( ww / quant ) * quant;
-						var sh = Math.floor( r[n][0] * wh / r[n][1] / quant ) * quant;
+						var sh = Math.floor( r[n].width * wh / r[n].height / quant ) * quant;
 						if ( sh < sc ) {
 							sc = sh;
 						}
-						h = wgFullScriptPath + '/thumb.php?f=' + encodeURIComponent( n ) + '&w=' + sc;
+						if ( r[n].local ) {
+							h = wgFullScriptPath + '/thumb.php?f=' + encodeURIComponent( n ) + '&w=' + sc;
+						} else {
+							h = wgFullScriptPath + '/index.php?action=ajax&rs=efSBTRemoteThumb&rsargs[]=' + encodeURIComponent( n ) + '&rsargs[]=' + sc;
+						}
 					}
 					if ( h != e.src ) {
 						e.parentNode._lightbox = [

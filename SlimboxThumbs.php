@@ -27,7 +27,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	die( 'Not an entry point.' );
 }
 
-define( 'SlimboxThumbs_VERSION', '2012-09-17' );
+define( 'SlimboxThumbs_VERSION', '2013-01-10' );
 
 // Register the extension credits.
 $wgExtensionCredits['other'][] = array(
@@ -39,13 +39,14 @@ $wgExtensionCredits['other'][] = array(
 		'[http://www.mediawiki.org/wiki/User:Jeroen_De_Dauw Jeroen De Dauw].'
 	),
 	'descriptionmsg' => 'slimboxthumbs-desc',
-	'version' => SlimboxThumbs_VERSION
+	'version' => SlimboxThumbs_VERSION,
 );
 
 $dir = dirname( __FILE__ ) . '/';
 $wgExtensionMessagesFiles['SlimboxThumbs'] = $dir . 'SlimboxThumbs.i18n.php';
 $wgHooks['BeforePageDisplay'][] = 'efSBTAddScripts';
 $wgAjaxExportList[] = 'efSBTGetImageSizes';
+$wgAjaxExportList[] = 'efSBTRemoteThumb';
 
 // Ajax handler to get image sizes
 function efSBTGetImageSizes( $names ) {
@@ -56,12 +57,48 @@ function efSBTGetImageSizes( $names ) {
 			if ( $title && $title->userCanRead() ) {
 				$file = wfFindFile( $title );
 				if ( $file && $file->getWidth() ) {
-					$result[ $name ] = array( $file->getWidth(), $file->getHeight(), $file->getFullUrl() );
+					$result[ $name ] = array(
+						'width' => $file->getWidth(),
+						'height' => $file->getHeight(),
+						'url' => $file->getFullUrl(),
+						'local' => $file->getRepo()->isLocal(),
+					);
 				}
 			}
 		}
 	}
 	return json_encode( $result );
+}
+
+// Not really an AJAX function, used to generate thumbnails for non-local images.
+// Needed because thumb.php only handles local images.
+function efSBTRemoteThumb( $name, $width ) {
+	$img = wfFindFile( $name );
+	if ( $img && $img->exists() && $img->getTitle()->userCanRead() &&
+		 !$img->getRepo()->isLocal() ) {
+		try {
+			$thumb = $img->transform( array( 'width' => $width ), 0 );
+		} catch( Exception $ex ) {
+			$thumb = false;
+		}
+		if ( $thumb && !$thumb->isError() ) {
+			/**
+			 * Thumbnails for foreign images have mPath == 'bogus'.
+			 * So, what hack is better? Redirect to $thumb->getUrl() or
+			 * make up the path using document root and stream the file?
+			 * Second will work for closed intranet wikis, so I'm using it by now.
+			 *
+			 * Redirect code:
+			 * header( 'HTTP/1.1 301 Moved Permanently' );
+			 * header( 'Location: '.$thumb->getUrl() );
+			 */
+			global $IP;
+			require_once "$IP/includes/StreamFile.php";
+			wfStreamFile( $_SERVER['DOCUMENT_ROOT'].$thumb->getUrl() );
+			exit;
+		}
+	}
+	return 'Error generating thumbnail';
 }
 
 // Adds javascript files and stylesheets.
