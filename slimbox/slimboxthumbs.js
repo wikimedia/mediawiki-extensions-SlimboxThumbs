@@ -6,6 +6,7 @@
 
 function makeSlimboxThumbs( $, pathRegexp, wgFullScriptPath ) {
 	var re = new RegExp( pathRegexp );
+	var reExcl = /(^|\/)skins\//;
 	var canview = /\.(jpe?g|jpe|gif|png)$/i;
 	var m;
 	var names = [];
@@ -24,7 +25,7 @@ function makeSlimboxThumbs( $, pathRegexp, wgFullScriptPath ) {
 			var ww = $( window ).width();
 			var wh = $( window ).height() * 0.9;
 			$( 'img' ).each( function( i, e ) {
-				if ( e.parentNode.nodeName == 'A' && ( m = re.exec( e.parentNode.href ) ) ) {
+				if ( e.parentNode.nodeName == 'A' && ( m = re.exec( e.parentNode.href ) ) && !reExcl.exec( e.src ) ) {
 					var n = decodeURIComponent( m[1] );
 					if ( !r[n] ) {
 						return;

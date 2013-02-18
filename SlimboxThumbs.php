@@ -27,7 +27,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	die( 'Not an entry point.' );
 }
 
-define( 'SlimboxThumbs_VERSION', '2013-01-10' );
+define( 'SlimboxThumbs_VERSION', '2013-02-18' );
 
 // Register the extension credits.
 $wgExtensionCredits['other'][] = array(
