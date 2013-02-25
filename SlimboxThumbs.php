@@ -61,7 +61,7 @@ function efSBTGetImageSizes( $names ) {
 						'width' => $file->getWidth(),
 						'height' => $file->getHeight(),
 						'url' => $file->getFullUrl(),
-						'local' => $file->getRepo()->isLocal(),
+						'local' => $file->isLocal(),
 					);
 				}
 			}
@@ -75,7 +75,7 @@ function efSBTGetImageSizes( $names ) {
 function efSBTRemoteThumb( $name, $width ) {
 	$img = wfFindFile( $name );
 	if ( $img && $img->exists() && $img->getTitle()->userCanRead() &&
-		 !$img->getRepo()->isLocal() ) {
+		 !$img->isLocal() ) {
 		try {
 			$thumb = $img->transform( array( 'width' => $width ), 0 );
 		} catch( Exception $ex ) {
