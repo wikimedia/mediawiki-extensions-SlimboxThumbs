@@ -19,9 +19,10 @@ $messages['en'] = array(
 
 /** Message documentation (Message documentation)
  * @author Purodha
+ * @author Shirayuki
  */
 $messages['qqq'] = array(
-	'slimboxthumbs-desc' => '{{desc}}',
+	'slimboxthumbs-desc' => '{{desc|name=Slimbox Thumbs|url=http://www.mediawiki.org/wiki/Extension:SlimboxThumbs}}',
 );
 
 /** Asturian (asturianu)
