@@ -172,7 +172,7 @@ $messages['ms'] = array(
 	'slimboxthumbs-desc' => 'Memaparkan imej bersaiz penuh dengan [http://www.digitalia.be/software/slimbox2 Slimbox 2] apabila mengklik gambar kenit',
 );
 
-/** Norwegian Bokmål (norsk (bokmål)‎)
+/** Norwegian Bokmål (norsk bokmål)
  * @author Nghtwlkr
  */
 $messages['nb'] = array(
