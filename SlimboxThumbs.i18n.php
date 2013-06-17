@@ -249,3 +249,10 @@ $messages['uk'] = array(
 $messages['zh-hans'] = array(
 	'slimboxthumbs-desc' => '点击缩略图时使用[http://www.digitalia.be/software/slimbox2 Slimbox 2]显示完整尺寸的图像',
 );
+
+/** Traditional Chinese (中文（繁體）‎)
+ * @author Justincheng12345
+ */
+$messages['zh-hant'] = array(
+	'slimboxthumbs-desc' => '點擊縮略圖時以[http://www.digitalia.be/software/slimbox2 Slimbox 2]顯示完整尺寸',
+);
