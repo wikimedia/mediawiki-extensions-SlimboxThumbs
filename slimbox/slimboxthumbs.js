@@ -45,9 +45,14 @@ function makeSlimboxThumbs( $, pathRegexp, wgFullScriptPath ) {
 						}
 					}
 					if ( h != e.src ) {
+						var p = $( e.parentNode );
+						var c = p.next( '.thumbcaption' );
+						if ( !c.length ) {
+							c = p.parents( 'li.gallerybox' ).find( '.gallerytext' );
+						}
+						n = ( c.text().replace( /^\s+|\s+$/g, '' ) || n.replace( /_/g, ' ' ) ) + ' &rarr;';
 						e.parentNode._lightbox = [
-							h, '<a href="'+e.parentNode.href+'">'+
-							n.replace( /_/g, ' ' )+'</a>'
+							h, '<a href="'+e.parentNode.href+'">'+n+'</a>'
 						];
 						nodes.push( e.parentNode );
 					}
