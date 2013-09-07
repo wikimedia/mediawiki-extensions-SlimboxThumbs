@@ -186,6 +186,13 @@ $messages['nl'] = array(
 	'slimboxthumbs-desc' => 'Geeft bij klikken op miniaturen afbeeldingen op de volledige grootte weer met [http://www.digitalia.be/software/slimbox2 Slimbox 2]',
 );
 
+/** Occitan (occitan)
+ * @author Cedric31
+ */
+$messages['oc'] = array(
+	'slimboxthumbs-desc' => "Aficha los imatges en talha reala amb [http://www.digitalia.be/software/slimbox2 Slimbox 2] al moment d'un clic sus las miniaturas",
+);
+
 /** Polish (polski)
  * @author Sp5uhe
  */
