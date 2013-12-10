@@ -124,7 +124,7 @@ function efSBTAddScripts( $out ) {
 	$out->addScript( '<script type="text/javascript" src="' . $eDir . '/js/slimbox2.js"></script>' . "\n" );
 	$out->addExtensionStyle( $eDir . '/css/slimbox2.css', 'screen' );
 	$out->addScript( '<script type="text/javascript" src="' . $eDir . '/slimboxthumbs.js"></script>' . "\n" );
-	$out->addInlineScript( "addHandler( window, 'load', function() {".
+	$out->addInlineScript( "$( window ).on( 'load', function() {".
 		"makeSlimboxThumbs( jQuery, \"".addslashes( $re ).
 		"\", \"".addslashes( $wgServer.$wgScriptPath )."\" ); } );" );
 
