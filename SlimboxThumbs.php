@@ -94,7 +94,7 @@ function efSBTRemoteThumb( $name, $width ) {
 			 */
 			global $IP;
 			require_once "$IP/includes/StreamFile.php";
-			wfStreamFile( $_SERVER['DOCUMENT_ROOT'].$thumb->getUrl() );
+			StreamFile::stream( $_SERVER['DOCUMENT_ROOT'].$thumb->getUrl() );
 			exit;
 		}
 	}
