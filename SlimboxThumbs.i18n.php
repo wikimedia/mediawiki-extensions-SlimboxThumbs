@@ -162,7 +162,7 @@ $messages['lb'] = array(
  * @author Bjankuloski06
  */
 $messages['mk'] = array(
-	'slimboxthumbs-desc' => 'Прикажува слики во полна големина со [http://www.digitalia.be/software/slimbox2 Slimbox 2] при кликнување на минијатурите',
+	'slimboxthumbs-desc' => 'Прикажува слики во полна големина со [http://www.digitalia.be/software/slimbox2 Slimbox 2] при стискање на минијатурите',
 );
 
 /** Malay (Bahasa Melayu)
