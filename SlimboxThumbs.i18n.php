@@ -74,6 +74,13 @@ $messages['es'] = array(
 	'slimboxthumbs-desc' => 'Muestra imágenes a tamaño completo con [http://www.digitalia.be/software/slimbox2 Slimbox 2] cuando se pulsa sobre la miniatura',
 );
 
+/** Persian (فارسی)
+ * @author Armin1392
+ */
+$messages['fa'] = array(
+	'slimboxthumbs-desc' => 'نمایش اندازه کامل تصاویر با [http://www.digitalia.be/software/slimbox2 Slimbox 2] هنگام کلیک کردن بر روی تصویر کوچک',
+);
+
 /** French (français)
  * @author Iluvalar
  */
