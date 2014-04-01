@@ -27,7 +27,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	die( 'Not an entry point.' );
 }
 
-define( 'SlimboxThumbs_VERSION', '2013-02-18' );
+define( 'SlimboxThumbs_VERSION', '2014-04-01' );
 
 // Register the extension credits.
 $wgExtensionCredits['other'][] = array(
@@ -43,6 +43,7 @@ $wgExtensionCredits['other'][] = array(
 );
 
 $dir = dirname( __FILE__ ) . '/';
+$wgMessagesDirs['SlimboxThumbs'] = __DIR__ . '/i18n';
 $wgExtensionMessagesFiles['SlimboxThumbs'] = $dir . 'SlimboxThumbs.i18n.php';
 $wgHooks['BeforePageDisplay'][] = 'efSBTAddScripts';
 $wgAjaxExportList[] = 'efSBTGetImageSizes';
