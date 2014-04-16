@@ -1,8 +1,8 @@
 {
-    "@metadata": {
-        "authors": [
-            "Farras"
-        ]
-    },
-    "slimboxthumbs-desc": "Menampilkan gambar ukuran penuh dengan [http://www.digitalia.be/software/slimbox2 Slimbox 2] ketika mengklik gambar versi kecil."
+	"@metadata": {
+		"authors": [
+			"Farras"
+		]
+	},
+	"slimboxthumbs-desc": "Menampilkan gambar ukuran penuh dengan [http://www.digitalia.be/software/slimbox2 Slimbox 2] ketika mengklik gambar versi kecil."
 }

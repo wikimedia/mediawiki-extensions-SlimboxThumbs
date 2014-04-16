@@ -1,8 +1,8 @@
 {
-    "@metadata": {
-        "authors": [
-            "Hamilton Abreu"
-        ]
-    },
-    "slimboxthumbs-desc": "Quando uma miniatura é clicada, mostra a imagem em tamanho real usando o [http://www.digitalia.be/software/slimbox2 Slimbox 2]"
+	"@metadata": {
+		"authors": [
+			"Hamilton Abreu"
+		]
+	},
+	"slimboxthumbs-desc": "Quando uma miniatura é clicada, mostra a imagem em tamanho real usando o [http://www.digitalia.be/software/slimbox2 Slimbox 2]"
 }

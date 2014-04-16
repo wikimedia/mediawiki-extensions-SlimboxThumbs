@@ -1,8 +1,8 @@
 {
-    "@metadata": {
-        "authors": [
-            "CERminator"
-        ]
-    },
-    "slimboxthumbs-desc": "Prikazuje slike pune veličine sa [http://www.digitalia.be/software/slimbox2 Slimbox 2] kada se klikne na smanjene prikaze"
+	"@metadata": {
+		"authors": [
+			"CERminator"
+		]
+	},
+	"slimboxthumbs-desc": "Prikazuje slike pune veličine sa [http://www.digitalia.be/software/slimbox2 Slimbox 2] kada se klikne na smanjene prikaze"
 }

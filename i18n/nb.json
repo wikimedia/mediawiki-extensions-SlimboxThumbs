@@ -1,8 +1,8 @@
 {
-    "@metadata": {
-        "authors": [
-            "Nghtwlkr"
-        ]
-    },
-    "slimboxthumbs-desc": "Viser bilder i full størrelse med [http://www.digitalia.be/software/slimbox2 Slimbox 2] når man klikker på miniatyrbilder"
+	"@metadata": {
+		"authors": [
+			"Nghtwlkr"
+		]
+	},
+	"slimboxthumbs-desc": "Viser bilder i full størrelse med [http://www.digitalia.be/software/slimbox2 Slimbox 2] når man klikker på miniatyrbilder"
 }

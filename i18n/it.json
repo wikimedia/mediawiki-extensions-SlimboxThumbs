@@ -1,8 +1,8 @@
 {
-    "@metadata": {
-        "authors": [
-            "Beta16"
-        ]
-    },
-    "slimboxthumbs-desc": "Visualizza le immagini intere con [http://www.digitalia.be/software/slimbox2 Slimbox 2] quando si clicca sulle miniature"
+	"@metadata": {
+		"authors": [
+			"Beta16"
+		]
+	},
+	"slimboxthumbs-desc": "Visualizza le immagini intere con [http://www.digitalia.be/software/slimbox2 Slimbox 2] quando si clicca sulle miniature"
 }

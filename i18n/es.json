@@ -1,8 +1,8 @@
 {
-    "@metadata": {
-        "authors": [
-            "Sanbec"
-        ]
-    },
-    "slimboxthumbs-desc": "Muestra imágenes a tamaño completo con [http://www.digitalia.be/software/slimbox2 Slimbox 2] cuando se pulsa sobre la miniatura"
+	"@metadata": {
+		"authors": [
+			"Sanbec"
+		]
+	},
+	"slimboxthumbs-desc": "Muestra imágenes a tamaño completo con [http://www.digitalia.be/software/slimbox2 Slimbox 2] cuando se pulsa sobre la miniatura"
 }

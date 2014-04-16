@@ -1,9 +1,9 @@
 {
-    "@metadata": {
-        "authors": [
-            "Purodha",
-            "Shirayuki"
-        ]
-    },
-    "slimboxthumbs-desc": "{{desc|name=Slimbox Thumbs|url=http://www.mediawiki.org/wiki/Extension:SlimboxThumbs}}"
+	"@metadata": {
+		"authors": [
+			"Purodha",
+			"Shirayuki"
+		]
+	},
+	"slimboxthumbs-desc": "{{desc|name=Slimbox Thumbs|url=http://www.mediawiki.org/wiki/Extension:SlimboxThumbs}}"
 }

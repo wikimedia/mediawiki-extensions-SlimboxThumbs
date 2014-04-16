@@ -1,8 +1,8 @@
 {
-    "@metadata": {
-        "authors": [
-            "Тест"
-        ]
-    },
-    "slimboxthumbs-desc": "Показує повний розмір зображення з [http://www.digitalia.be/software/slimbox2 Slimbox 2] при натисканні на мініатюру"
+	"@metadata": {
+		"authors": [
+			"Тест"
+		]
+	},
+	"slimboxthumbs-desc": "Показує повний розмір зображення з [http://www.digitalia.be/software/slimbox2 Slimbox 2] при натисканні на мініатюру"
 }
