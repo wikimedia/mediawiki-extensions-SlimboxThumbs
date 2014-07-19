@@ -55,7 +55,7 @@ function efSBTGetImageSizes( $names ) {
 	foreach ( explode( ':', $names ) as $name ) {
 		if ( !isset( $result[$name] ) ) {
 			$title = Title::makeTitle( NS_FILE, $name );
-			if ( $title && $title->userCanRead() ) {
+			if ( $title && $title->userCan( 'read' ) ) {
 				$file = wfFindFile( $title );
 				if ( $file && $file->getWidth() ) {
 					$result[ $name ] = array(
@@ -75,7 +75,7 @@ function efSBTGetImageSizes( $names ) {
 // Needed because thumb.php only handles local images.
 function efSBTRemoteThumb( $name, $width ) {
 	$img = wfFindFile( $name );
-	if ( $img && $img->exists() && $img->getTitle()->userCanRead() &&
+	if ( $img && $img->exists() && $img->getTitle()->userCan( 'read' ) &&
 		 !$img->isLocal() ) {
 		try {
 			$thumb = $img->transform( array( 'width' => $width ), 0 );
