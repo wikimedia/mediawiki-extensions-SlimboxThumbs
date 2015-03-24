@@ -2,8 +2,9 @@
 	"@metadata": {
 		"authors": [
 			"Purodha",
-			"Shirayuki"
+			"Shirayuki",
+			"Umherirrender"
 		]
 	},
-	"slimboxthumbs-desc": "{{desc|name=Slimbox Thumbs|url=http://www.mediawiki.org/wiki/Extension:SlimboxThumbs}}"
+	"slimboxthumbs-desc": "{{desc|name=Slimbox Thumbs|url=https://www.mediawiki.org/wiki/Extension:SlimboxThumbs}}"
 }
