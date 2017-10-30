@@ -44,7 +44,6 @@ $wgExtensionCredits['other'][] = array(
 
 $dir = dirname( __FILE__ ) . '/';
 $wgMessagesDirs['SlimboxThumbs'] = __DIR__ . '/i18n';
-$wgExtensionMessagesFiles['SlimboxThumbs'] = $dir . 'SlimboxThumbs.i18n.php';
 $wgHooks['BeforePageDisplay'][] = 'efSBTAddScripts';
 $wgAjaxExportList[] = 'efSBTGetImageSizes';
 $wgAjaxExportList[] = 'efSBTRemoteThumb';
