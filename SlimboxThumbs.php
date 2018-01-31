@@ -48,6 +48,17 @@ $wgHooks['BeforePageDisplay'][] = 'efSBTAddScripts';
 $wgAjaxExportList[] = 'efSBTGetImageSizes';
 $wgAjaxExportList[] = 'efSBTRemoteThumb';
 
+$wgResourceModules += array(
+	'ext.slimboxthumbs' => [
+		'scripts' => [
+			'js/slimbox2.js',
+			'slimboxthumbs.js',
+		],
+		'styles' => 'css/slimbox2.css',
+		'localBasePath' => __DIR__ . '/slimbox',
+		'remoteExtPath' => 'SlimboxThumbs/slimbox',
+] );
+
 // Ajax handler to get image sizes
 function efSBTGetImageSizes( $names ) {
 	$result = array();
@@ -103,25 +114,11 @@ function efSBTRemoteThumb( $name, $width ) {
 
 // Adds javascript files and stylesheets.
 function efSBTAddScripts( $out ) {
-	global $wgVersion, $wgExtensionAssetsPath, $wgUploadPath, $wgServer, $wgScriptPath, $wgArticlePath;
+	global $wgServer, $wgScriptPath, $wgArticlePath;
 
-	$mw16 = version_compare( $wgVersion, '1.16', '>=' );
-	$useExtensionPath = $mw16 && isset( $wgExtensionAssetsPath ) && $wgExtensionAssetsPath;
-	$eDir = ( $useExtensionPath ? $wgExtensionAssetsPath : $wgScriptPath . '/extensions' );
-	$eDir .= '/SlimboxThumbs/slimbox';
-
-	if ( !$mw16 ) {
-		$out->addScript(
-			'<script type="text/javascript"'.
-			' src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>' . "\n"
-		);
-	}
+	$out->addModules( "ext.slimboxthumbs" );
 
 	$re = str_replace( '\\$1', '[^:]+:(.*)', preg_quote( $wgArticlePath ) );
-
-	$out->addScript( '<script type="text/javascript" src="' . $eDir . '/js/slimbox2.js"></script>' . "\n" );
-	$out->addExtensionStyle( $eDir . '/css/slimbox2.css', 'screen' );
-	$out->addScript( '<script type="text/javascript" src="' . $eDir . '/slimboxthumbs.js"></script>' . "\n" );
 	$out->addInlineScript( "$( window ).on( 'load', function() {".
 		"makeSlimboxThumbs( jQuery, \"".addslashes( $re ).
 		"\", \"".addslashes( $wgServer.$wgScriptPath )."\" ); } );" );
