@@ -1,8 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Toliño"
+			"Toliño",
+			"Elisardojm"
 		]
 	},
-	"slimboxthumbs-desc": "Mostra imaxes a tamaño completo con [http://www.digitalia.be/software/slimbox2 Slimbox 2] ao premer sobre a miniatura"
+	"slimboxthumbs-desc": "Amosa imaxes a tamaño completo con [http://www.digitalia.be/software/slimbox2 Slimbox 2] ao premer sobre a miniatura"
 }
