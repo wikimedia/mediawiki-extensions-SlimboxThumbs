@@ -2,7 +2,7 @@
 
 /**
  * SlimboxThumbs extension /REWRITTEN/
- * Originally http://www.mediawiki.org/wiki/Extension:SlimboxThumbs
+ * Originally https://www.mediawiki.org/wiki/Extension:SlimboxThumbs
  * Now it does the same, but the code is totally different
  * Required MediaWiki: 1.13+
  *
@@ -36,7 +36,7 @@ $wgExtensionCredits['other'][] = array(
 	'url' => 'https://www.mediawiki.org/wiki/Extension:SlimboxThumbs',
 	'author' => array(
 		'[http://yourcmc.ru/wiki/User:VitaliyFilippov Vitaliy Filippov], ' .
-		'[http://www.mediawiki.org/wiki/User:Jeroen_De_Dauw Jeroen De Dauw].'
+		'[https://www.mediawiki.org/wiki/User:Jeroen_De_Dauw Jeroen De Dauw].'
 	),
 	'descriptionmsg' => 'slimboxthumbs-desc',
 	'version' => SlimboxThumbs_VERSION,
