@@ -62,18 +62,29 @@ $wgResourceModules += array(
 // Ajax handler to get image sizes
 function efSBTGetImageSizes( $names ) {
 	$result = array();
+	$user = RequestContext::getMain()->getUser();
 	foreach ( explode( ':', $names ) as $name ) {
 		if ( !isset( $result[$name] ) ) {
 			$title = Title::makeTitle( NS_FILE, $name );
-			if ( $title && $title->userCan( 'read' ) ) {
-				$file = wfFindFile( $title );
-				if ( $file && $file->getWidth() ) {
-					$result[ $name ] = array(
-						'width' => $file->getWidth(),
-						'height' => $file->getHeight(),
-						'url' => $file->getFullUrl(),
-						'local' => $file->isLocal(),
-					);
+			if ( $title ) {
+				if ( class_exists( 'MediaWiki\Permissions\PermissionManager' ) ) {
+					// MW 1.33+
+					$userCan = \MediaWiki\MediaWikiServices::getInstance()
+						->getPermissionManager()
+						->userCan( 'read', $user, $title );
+				} else {
+					$userCan = $title->userCan( 'read' );
+				}
+				if ( $userCan ) {
+					$file = wfFindFile( $title );
+					if ( $file && $file->getWidth() ) {
+						$result[ $name ] = array(
+							'width' => $file->getWidth(),
+							'height' => $file->getHeight(),
+							'url' => $file->getFullUrl(),
+							'local' => $file->isLocal(),
+						);
+					}
 				}
 			}
 		}
@@ -85,28 +96,39 @@ function efSBTGetImageSizes( $names ) {
 // Needed because thumb.php only handles local images.
 function efSBTRemoteThumb( $name, $width ) {
 	$img = wfFindFile( $name );
-	if ( $img && $img->exists() && $img->getTitle()->userCan( 'read' ) &&
-		 !$img->isLocal() ) {
-		try {
-			$thumb = $img->transform( array( 'width' => $width ), 0 );
-		} catch( Exception $ex ) {
-			$thumb = false;
+	if ( $img && $img->exists() && !$img->isLocal() ) {
+		if ( class_exists( 'MediaWiki\Permissions\PermissionManager' ) ) {
+			// MW 1.33+
+			$user = RequestContext::getMain()->getUser();
+			$userCan = \MediaWiki\MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->userCan( 'read', $user, $img->getTitle() );
+		} else {
+			$userCan = $img->getTitle()->userCan( 'read' );
 		}
-		if ( $thumb && !$thumb->isError() ) {
-			/**
-			 * Thumbnails for foreign images have mPath == 'bogus'.
-			 * So, what hack is better? Redirect to $thumb->getUrl() or
-			 * make up the path using document root and stream the file?
-			 * Second will work for closed intranet wikis, so I'm using it by now.
-			 *
-			 * Redirect code:
-			 * header( 'HTTP/1.1 301 Moved Permanently' );
-			 * header( 'Location: '.$thumb->getUrl() );
-			 */
-			global $IP;
-			require_once "$IP/includes/StreamFile.php";
-			StreamFile::stream( $_SERVER['DOCUMENT_ROOT'].$thumb->getUrl() );
-			exit;
+
+		if ( $userCan ) {
+			try {
+				$thumb = $img->transform( array( 'width' => $width ), 0 );
+			} catch( Exception $ex ) {
+				$thumb = false;
+			}
+			if ( $thumb && !$thumb->isError() ) {
+				/**
+				 * Thumbnails for foreign images have mPath == 'bogus'.
+				 * So, what hack is better? Redirect to $thumb->getUrl() or
+				 * make up the path using document root and stream the file?
+				 * Second will work for closed intranet wikis, so I'm using it by now.
+				 *
+				 * Redirect code:
+				 * header( 'HTTP/1.1 301 Moved Permanently' );
+				 * header( 'Location: '.$thumb->getUrl() );
+				 */
+				global $IP;
+				require_once "$IP/includes/StreamFile.php";
+				StreamFile::stream( $_SERVER['DOCUMENT_ROOT'].$thumb->getUrl() );
+				exit;
+			}
 		}
 	}
 	return 'Error generating thumbnail';
