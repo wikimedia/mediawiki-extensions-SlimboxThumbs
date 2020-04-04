@@ -23,6 +23,8 @@
  * @author Vitaliy Filippov <vitalif@mail.ru>
  */
 
+use MediaWiki\MediaWikiServices;
+
 if ( !defined( 'MEDIAWIKI' ) ) {
 	die( 'Not an entry point.' );
 }
@@ -76,7 +78,12 @@ function efSBTGetImageSizes( $names ) {
 					$userCan = $title->userCan( 'read' );
 				}
 				if ( $userCan ) {
-					$file = wfFindFile( $title );
+					if ( method_exists( MediaWikiServices::class, 'getRepoGroup' ) ) {
+						// MediaWiki 1.34+
+						$file = MediaWikiServices::getInstance()->getRepoGroup()->findFile( $title );
+					} else {
+						$file = wfFindFile( $title );
+					}
 					if ( $file && $file->getWidth() ) {
 						$result[ $name ] = array(
 							'width' => $file->getWidth(),
@@ -95,7 +102,12 @@ function efSBTGetImageSizes( $names ) {
 // Not really an AJAX function, used to generate thumbnails for non-local images.
 // Needed because thumb.php only handles local images.
 function efSBTRemoteThumb( $name, $width ) {
-	$img = wfFindFile( $name );
+	if ( method_exists( MediaWikiServices::class, 'getRepoGroup' ) ) {
+		// MediaWiki 1.34+
+		$img = MediaWikiServices::getInstance()->getRepoGroup()->findFile( $name );
+	} else {
+		$img = wfFindFile( $name );
+	}
 	if ( $img && $img->exists() && !$img->isLocal() ) {
 		if ( class_exists( 'MediaWiki\Permissions\PermissionManager' ) ) {
 			// MW 1.33+
